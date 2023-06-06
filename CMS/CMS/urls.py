@@ -20,6 +20,7 @@ from django.urls import path, re_path, include
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from app.views import PostCreateAPIView,PostRetrieveUpdateDestroyAPIView,LikeCreateAPIView,LikeRetrieveUpdateDestroyAPIView,UserCreateAPIView,UserRetrieveUpdateDestroyAPIView
 
 
 schema_view = get_schema_view(
@@ -43,4 +44,11 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0),
          name='schema-redoc'), 
     path('admin/', admin.site.urls),
+    path('users/',UserCreateAPIView.as_view(),name='user_create'),
+    path('users/<int:pk>/',UserRetrieveUpdateDestroyAPIView.as_view(),name='user-retrieve-update-destroy'),
+    path('posts/',PostCreateAPIView.as_view(),name='post_create'),
+    path('posts/<int:pk>/',PostRetrieveUpdateDestroyAPIView.as_view(),name='post-retrieve-update-destroy'),
+    path('like/',LikeCreateAPIView.as_view(),name='like_create'),
+    path('like/<int:pk>/',LikeRetrieveUpdateDestroyAPIView.as_view(),name='like-retrieve-update-destroy')
+    
 ]
