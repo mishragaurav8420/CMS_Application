@@ -39,8 +39,8 @@ class Post(models.Model):
     description = models.TextField()
     content = models.TextField()
     creation_date = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts',null=True)
 
 class Like(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
-    # post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_likes')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_likes')
